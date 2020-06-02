@@ -27,6 +27,8 @@ class CowsAndBulls
                         if(i == y)
                             bulls += 1
                             y = $max_length_key
+                        else
+                            cows += 1
                         end
                     end
                     y += 1
