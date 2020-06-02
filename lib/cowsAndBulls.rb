@@ -21,14 +21,21 @@ class CowsAndBulls
             return true
         else
             for i in (0..$max_length_key)
+                coincidence = true
                 y = 0
                 while y <= $max_length_key
                     if(number.to_s[i] == @key.to_s[y])
                         if(i == y)
                             bulls += 1
+                            if(!coincidence)
+                                cows -= 1
+                            end
                             y = $max_length_key
                         else
-                            cows += 1
+                            if(coincidence)
+                                cows += 1
+                                coincidence = false
+                            end
                         end
                     end
                     y += 1
