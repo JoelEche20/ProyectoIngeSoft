@@ -13,4 +13,9 @@ RSpec.describe CowsAndBulls do
         key = CowsAndBulls.new
         expect(key.insertKey(12)).to eq(false)
     end
+    it 'Deberia devolver true si la clave es correcta' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.insertKey(5555)
+        expect(cowsAndBulls.playCowsAndBulls(5555)).to eq(true)
+    end
 end
