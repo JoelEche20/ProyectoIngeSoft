@@ -32,7 +32,7 @@ class CowsAndBulls
                             end
                             y = $max_length_key
                         else
-                            if(coincidence)
+                            if(coincidence && (i > 0 && (number.to_s[i] != number.to_s[i - 1])))
                                 cows += 1
                                 coincidence = false
                             end

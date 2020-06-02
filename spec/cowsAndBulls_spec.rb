@@ -33,4 +33,9 @@ RSpec.describe CowsAndBulls do
         cowsAndBulls.insertKey(5512)
         expect(cowsAndBulls.playCowsAndBulls(5152)).to eq([2,2])
     end
+    it 'Deberia devolver array [2,2] para dos toros y dos vaca' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.insertKey(5225)
+        expect(cowsAndBulls.playCowsAndBulls(5555)).to eq([0,2])
+    end
 end
