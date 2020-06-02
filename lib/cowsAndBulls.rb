@@ -47,6 +47,8 @@ class CowsAndBulls
         end
         if(cowsLiteral != 'cero' && bullsLiteral != 'cero')
             res = cowsLiteral + ' ' + nameCow + ' y ' + bullsLiteral + ' ' + nameBull
+        elsif(cowsLiteral == 'cero' && bullsLiteral == 'cero')
+            res = "Sin coincidencias"
         elsif(cowsLiteral == 'cero')
             res = bullsLiteral + ' ' + nameBull
         elsif(bullsLiteral == 'cero')
