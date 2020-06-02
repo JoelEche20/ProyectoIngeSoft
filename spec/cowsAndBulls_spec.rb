@@ -18,24 +18,24 @@ RSpec.describe CowsAndBulls do
         cowsAndBulls.insertKey(5555)
         expect(cowsAndBulls.playCowsAndBulls(5555)).to eq(true)
     end
-    it 'Deberia devolver array [cero,un] para un toro y cero vacas' do
+    it 'Deberia devolver un toro' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.insertKey(1234)
-        expect(cowsAndBulls.playCowsAndBulls(1567)).to eq(['cero','un'])
+        expect(cowsAndBulls.playCowsAndBulls(1567)).to eq('un toro')
     end
-    it 'Deberia devolver array [un,cero] para cero toros y una vaca' do
+    it 'Deberia devolver una vaca' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.insertKey(1234)
-        expect(cowsAndBulls.playCowsAndBulls(9178)).to eq(['un','cero'])
+        expect(cowsAndBulls.playCowsAndBulls(9178)).to eq('una vaca')
     end
-    it 'Deberia devolver array [dos,dos] para dos toros y dos vaca' do
+    it 'Deberia devolver dos vacas y dos toros' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.insertKey(5512)
-        expect(cowsAndBulls.playCowsAndBulls(5152)).to eq(['dos','dos'])
+        expect(cowsAndBulls.playCowsAndBulls(5152)).to eq('dos vacas y dos toros')
     end
-    it 'Deberia devolver array [cero,dos] para dos toros y cero vaca' do
+    it 'Deberia devolver dos toros' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.insertKey(5225)
-        expect(cowsAndBulls.playCowsAndBulls(5555)).to eq(['cero','dos'])
+        expect(cowsAndBulls.playCowsAndBulls(5555)).to eq('dos toros')
     end
 end

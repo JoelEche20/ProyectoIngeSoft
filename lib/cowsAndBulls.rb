@@ -29,6 +29,33 @@ class CowsAndBulls
         return word
     end
 
+    def createMessage(cows,bulls)
+        res = ''
+        nameCow = ''
+        nameBull = ''
+        cowsLiteral = changeNumberToLiteral(cows)
+        bullsLiteral = changeNumberToLiteral(bulls)
+        if(cowsLiteral == 'un')
+            cowsLiteral = 'una'
+            nameCow = 'vaca'
+        else
+            nameCow = 'vacas'
+        end
+        if(bullsLiteral == 'un')
+            nameBull = 'toro'
+        else
+            nameBull = 'toros'
+        end
+        if(cowsLiteral != 'cero' && bullsLiteral != 'cero')
+            res = cowsLiteral + ' ' + nameCow + ' y ' + bullsLiteral + ' ' + nameBull
+        elsif(cowsLiteral == 'cero')
+            res = bullsLiteral + ' ' + nameBull
+        elsif(bullsLiteral == 'cero')
+            res = cowsLiteral + ' ' + nameCow
+        end
+        return res
+    end
+
     def playCowsAndBulls(number)
         cows = 0
         bulls = 0
@@ -58,9 +85,7 @@ class CowsAndBulls
                 end
             end
         end
-        cowsLiteral = changeNumberToLiteral(cows)
-        bullsLiteral = changeNumberToLiteral(bulls)
-        return [cowsLiteral,bullsLiteral]
+        return createMessage(cows,bulls)
     end
     
 end
