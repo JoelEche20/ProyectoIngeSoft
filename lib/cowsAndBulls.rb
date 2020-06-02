@@ -1,7 +1,6 @@
 class CowsAndBulls 
     @key
     $attempts = 0
-    @res = ""
     $max_length_key = 3
 
     def insertKey(number)
@@ -11,6 +10,23 @@ class CowsAndBulls
         else
             return false
         end
+    end
+
+    def changeNumberToLiteral(number)
+        word = ''
+        case number.to_i
+        when 0
+            word = 'cero'
+        when 1
+            word = 'un'
+        when 2
+            word = 'dos'
+        when 3 
+            word = 'tres'
+        else
+            word = 'cuatro'
+        end
+        return word
     end
 
     def playCowsAndBulls(number)
@@ -42,7 +58,9 @@ class CowsAndBulls
                 end
             end
         end
-        return [cows,bulls]
+        cowsLiteral = changeNumberToLiteral(cows)
+        bullsLiteral = changeNumberToLiteral(bulls)
+        return [cowsLiteral,bullsLiteral]
     end
     
 end
