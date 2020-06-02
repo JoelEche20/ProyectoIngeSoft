@@ -33,4 +33,8 @@ RSpec.describe CowsAndBulls do
         cowsAndBulls = CowsAndBulls.new
         expect(cowsAndBulls.playCowsAndBulls(5555,5225)).to eq('dos toros')
     end
+    it 'Deberia devolver Numero Invalido' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.playCowsAndBulls(123,1234)).to eq('Numero Invalido')
+    end
 end

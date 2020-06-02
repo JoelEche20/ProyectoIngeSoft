@@ -56,32 +56,38 @@ class CowsAndBulls
     def playCowsAndBulls(number,key)
         cows = 0
         bulls = 0
-        if(number == key)
-            return true
-        else
-            for i in (0..$max_length_key)
-                coincidence = true
-                y = 0
-                while y <= $max_length_key
-                    if(number.to_s[i] == key.to_s[y])
-                        if(i == y)
-                            bulls += 1
-                            if(!coincidence)
-                                cows -= 1
-                            end
-                            y = $max_length_key
-                        else
-                            if(coincidence && (i > 0 && (number.to_s[i] != number.to_s[i - 1])))
-                                cows += 1
-                                coincidence = false
+        message = ''
+        if(verifyQuantityOfDigits(number))
+            if(number == key)
+                return true
+            else
+                for i in (0..$max_length_key)
+                    coincidence = true
+                    y = 0
+                    while y <= $max_length_key
+                        if(number.to_s[i] == key.to_s[y])
+                            if(i == y)
+                                bulls += 1
+                                if(!coincidence)
+                                    cows -= 1
+                                end
+                                y = $max_length_key
+                            else
+                                if(coincidence && (i > 0 && (number.to_s[i] != number.to_s[i - 1])))
+                                    cows += 1
+                                    coincidence = false
+                                end
                             end
                         end
+                        y += 1
                     end
-                    y += 1
                 end
             end
+            message = createMessage(cows,bulls)
+        else
+            message = 'Numero Invalido'
         end
-        return createMessage(cows,bulls)
+        return  message
     end
     
 end
