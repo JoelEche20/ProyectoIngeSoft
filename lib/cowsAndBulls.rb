@@ -1,11 +1,8 @@
 class CowsAndBulls 
-    @key
-    $attempts = 0
     $max_length_key = 3
 
-    def insertKey(number)
-        @key = number.to_i
-        if(@key.to_s.length == $max_length_key + 1)
+    def verifyQuantityOfDigits(number)
+        if(number.to_s.length == $max_length_key + 1)
             return true
         else
             return false
@@ -56,18 +53,17 @@ class CowsAndBulls
         return res
     end
 
-    def playCowsAndBulls(number)
+    def playCowsAndBulls(number,key)
         cows = 0
         bulls = 0
-        $attempts += 1
-        if(number == @key)
+        if(number == key)
             return true
         else
             for i in (0..$max_length_key)
                 coincidence = true
                 y = 0
                 while y <= $max_length_key
-                    if(number.to_s[i] == @key.to_s[y])
+                    if(number.to_s[i] == key.to_s[y])
                         if(i == y)
                             bulls += 1
                             if(!coincidence)
