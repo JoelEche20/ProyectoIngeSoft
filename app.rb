@@ -17,10 +17,11 @@ end
 
 post '/respuestaIntento' do
     cowbull=CowsAndBulls.new
-    intento=cowbull.playCowsAndBulls(params[:intento].to_i,$key)
-    if(intento == true)
-        "Ganaste"
+    @intento=cowbull.playCowsAndBulls(params[:intento].to_i,$key)
+     
+    if(@intento == true)
+        erb :mostrar_mensaje_view
     else
-        "la respuesta es:"+intento
+        erb :mostrar_mensaje_intento_view
     end   
 end
