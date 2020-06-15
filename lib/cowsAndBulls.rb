@@ -1,13 +1,14 @@
 class CowsAndBulls 
-    $max_length_key = 3
+    @max_length_key
     @cows
     @bulls
     @type
     @key
 
-    def configuration(key,type)
+    def configuration(key,type,max_length_key)
         resp = false
         @type = type.to_s
+        @max_length_key = max_length_key.to_i - 1
         if (verifyData(key))
             @key = key.to_s
             resp = true
@@ -17,7 +18,7 @@ class CowsAndBulls
 
     def verifyQuantityOfDigits(number)
         resp = false
-        if(number.to_s.length == $max_length_key + 1)
+        if(number.to_s.length == @max_length_key + 1)
             resp = true
         end
         return resp
@@ -30,7 +31,7 @@ class CowsAndBulls
     def verifyRepeatedCharacters(number)
         resp = true
         string  = number.to_s
-        for i in (1..$max_length_key)
+        for i in (1..@max_length_key)
             if(string[i] == string[i - 1])
                 resp = false 
             end
@@ -59,10 +60,10 @@ class CowsAndBulls
         resp = true
         if(verifyQuantityOfDigits(colors) && verifyRepeatedCharacters(colors))
             i = 0
-            while i <= $max_length_key
+            while i <= @max_length_key
                 if(!validColors(colors.to_s[i]))
                     resp = false
-                    i = $max_length_key
+                    i = @max_length_key
                 end 
                 i += 1  
             end
@@ -128,11 +129,11 @@ class CowsAndBulls
     def countCowsAndBulls(currentDigit, previusDigit, position)
         coincidence = true
         y = 0
-        while y <= $max_length_key
+        while y <= @max_length_key
             if(currentDigit == @key.to_s[y])
                 if(position == y)
                     @bulls += 1
-                    y = $max_length_key
+                    y = @max_length_key
                 else
                     @cows += 1
                 end
@@ -149,7 +150,7 @@ class CowsAndBulls
             if(number.to_s == @key)
                 return true
             else
-                for i in (0..$max_length_key)
+                for i in (0..@max_length_key)
                     countCowsAndBulls(number.to_s[i],number.to_s[i - 1], i)
                 end
             end
