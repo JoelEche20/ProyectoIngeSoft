@@ -105,8 +105,16 @@ class CowsAndBulls
             word = 'dos'
         when 3 
             word = 'tres'
-        else
+        when 4 
             word = 'cuatro'
+        when 5 
+            word = 'cinco'
+        when 6
+            word = 'seis'
+        when 7 
+            word = 'siete'
+        else
+            word = 'ocho'
         end
         return word
     end
