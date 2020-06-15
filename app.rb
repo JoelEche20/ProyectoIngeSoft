@@ -6,7 +6,7 @@ $nombrep
 $quien
 $modo
 $dificultad
-
+$esMayor=true
 
 get '/'do 
     erb :Home
@@ -45,7 +45,11 @@ end
 
 post '/respuestaIntento' do
     cowbull=CowsAndBulls.new
-    cowbull.configuration($key.to_s,$modo,4)
+    if $quien.to_s=="1 v CPU" && $esMayor
+        $esMayor=false
+        $key=cowbull.randomNumber($dificultad)
+    end
+    cowbull.configuration($key.to_s,$modo,$dificultad)
     @intento=cowbull.playCowsAndBulls(params[:intento].to_s)
     if(@intento == true)
         erb :mostrar_mensaje_view

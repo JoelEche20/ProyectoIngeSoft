@@ -5,6 +5,63 @@ class CowsAndBulls
     @type
     @key
 
+    def randomNumber(level)
+        random = ""
+        i = 1
+        cantidadDeDigitos = defineLvels(level).to_i
+        number = rand(1..9)
+        random = random + number.to_s
+        while i < cantidadDeDigitos
+            number = rand(1..9)
+            isRepeated = false
+            for y in (0..random.length)
+                if(random[y] == number.to_s)
+                    isRepeated = true
+                end
+            end
+            if !isRepeated
+                random = random + number.to_s
+                i += 1 
+            end
+        end
+        puts random
+        return random
+    end
+
+    def changedNumbersToColors(number)
+        case number.to_i
+        when 1
+            resp = 'r'
+        when 2
+            resp = 'a'
+        when 3
+            resp = 'v'
+        when 4
+            resp = 'b'
+        when 5
+            resp = 'n'
+        when 6
+            resp = 'c'
+        when 7
+            resp = 'm'
+        when 8
+            resp = 'd'
+        when 9
+            resp = 'p'
+        end
+        return resp
+    end
+
+    def colorsRandom(level)
+        numberRand = randomNumber(level)
+        puts numberRand.to_s
+        colors = ""
+        for i in (0..numberRand.length)
+            colors = colors + changedNumbersToColors(numberRand.to_s[i]).to_s
+        end
+        return colors
+    end
+
     def defineLvels(level)
         case level
         when "Facil"
@@ -63,7 +120,7 @@ class CowsAndBulls
     def validColors(color)
         c = color.to_s.downcase
         resp = false
-        if(c == 'r' || c == 'a' || c == 'v' || c == 'b' || c == 'n' || c == 'c' || c == 'm' || c == 'd')
+        if(c == 'r' || c == 'a' || c == 'v' || c == 'b' || c == 'n' || c == 'c' || c == 'm' || c == 'd' || c == 'p')
             resp = true
         end
         return resp
