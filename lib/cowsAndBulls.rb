@@ -5,10 +5,22 @@ class CowsAndBulls
     @type
     @key
 
+    def defineLvels(level)
+        case level
+        when "Facil"
+            resp = 4
+        when "Medio"
+            resp = 6
+        when "Alto"
+            resp = 8
+        end
+        return resp
+    end
+
     def configuration(key,type,max_length_key)
         resp = false
         @type = type.to_s
-        @max_length_key = max_length_key.to_i - 1
+        @max_length_key = defineLvels(max_length_key).to_i - 1
         if (verifyData(key))
             @key = key.to_s
             @key = @key.downcase
@@ -51,16 +63,17 @@ class CowsAndBulls
     def validColors(color)
         c = color.to_s.downcase
         resp = false
-        if(c == 'r' || c == 'a' || c == 'v' || c == 'b')
+        if(c == 'r' || c == 'a' || c == 'v' || c == 'b' || c == 'n' || c == 'c' || c == 'm' || c == 'd')
             resp = true
         end
         return resp
     end
 
     def verifyCharacterColor(colors)
-        resp = true
+        resp = false
         if(verifyQuantityOfDigits(colors) && verifyRepeatedCharacters(colors))
             i = 0
+            resp = true
             while i <= @max_length_key
                 if(!validColors(colors.to_s[i]))
                     resp = false
