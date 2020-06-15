@@ -1,11 +1,25 @@
 class CowsAndBulls 
-    $max_length_key = 3
+    @max_length_key
     @cows
     @bulls
+    @type
+    @key
+
+    def configuration(key,type,max_length_key)
+        resp = false
+        @type = type.to_s
+        @max_length_key = max_length_key.to_i - 1
+        if (verifyData(key))
+            @key = key.to_s
+            @key = @key.downcase
+            resp = true
+        end
+        return resp
+    end
 
     def verifyQuantityOfDigits(number)
         resp = false
-        if(number.to_s.length == $max_length_key + 1)
+        if(number.to_s.length == @max_length_key + 1)
             resp = true
         end
         return resp
@@ -15,10 +29,10 @@ class CowsAndBulls
         obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
     end
 
-    def verifyCharacters(number)
+    def verifyRepeatedCharacters(number)
         resp = true
         string  = number.to_s
-        for i in (1..$max_length_key)
+        for i in (1..@max_length_key)
             if(string[i] == string[i - 1])
                 resp = false 
             end
@@ -26,10 +40,43 @@ class CowsAndBulls
         return resp
     end
 
-    def verifyData(number)
+    def verifyCharacterNumber(number)
         resp = false
-        if(verifyQuantityOfDigits(number) && verifyCharacters(number) && isNumeric(number))
+        if(verifyQuantityOfDigits(number) && verifyRepeatedCharacters(number) && isNumeric(number))
             resp = true
+        end
+        return resp
+    end
+
+    def validColors(color)
+        c = color.to_s.downcase
+        resp = false
+        if(c == 'r' || c == 'a' || c == 'v' || c == 'b')
+            resp = true
+        end
+        return resp
+    end
+
+    def verifyCharacterColor(colors)
+        resp = true
+        if(verifyQuantityOfDigits(colors) && verifyRepeatedCharacters(colors))
+            i = 0
+            while i <= @max_length_key
+                if(!validColors(colors.to_s[i]))
+                    resp = false
+                    i = @max_length_key
+                end 
+                i += 1  
+            end
+        end
+        return resp
+    end
+
+    def verifyData(input)
+        if(@type == "colores")
+            resp = verifyCharacterColor(input)
+        elsif (@type == "numeros")
+            resp = verifyCharacterNumber(input)
         end
         return resp
     end
@@ -80,14 +127,14 @@ class CowsAndBulls
         return res
     end
 
-    def countCowsAndBulls(currentDigit, key, previusDigit, position)
+    def countCowsAndBulls(currentDigit, previusDigit, position)
         coincidence = true
         y = 0
-        while y <= $max_length_key
-            if(currentDigit == key.to_s[y])
+        while y <= @max_length_key
+            if(currentDigit == @key.to_s[y])
                 if(position == y)
                     @bulls += 1
-                    y = $max_length_key
+                    y = @max_length_key
                 else
                     @cows += 1
                 end
@@ -96,16 +143,16 @@ class CowsAndBulls
         end
     end
 
-    def playCowsAndBulls(number,key)
+    def playCowsAndBulls(number)
         @cows = 0
         @bulls = 0
         message = ''
         if(verifyData(number))
-            if(number == key)
+            if(number.to_s.downcase == @key)
                 return true
             else
-                for i in (0..$max_length_key)
-                    countCowsAndBulls(number.to_s[i], key,number.to_s[i - 1], i)
+                for i in (0..@max_length_key)
+                    countCowsAndBulls(number.to_s[i],number.to_s[i - 1], i)
                 end
             end
             message = createMessage(@cows,@bulls)
