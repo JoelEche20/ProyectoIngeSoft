@@ -12,10 +12,12 @@ post '/' do
 end
 
 get '/ingresarNombre' do
+    
     erb :ingresar_nombre_view
 end
 get '/ingresarClave' do
     @nombre= params[:nombre].to_s
+    @nombrep= params[:nombrep].to_s
     erb :ingresar_clave_view
 end
 post '/ingresarClave'do
@@ -25,6 +27,7 @@ post '/ingresarClave'do
 end
 
 get '/ingresarIntento' do
+    @nombrep= params[:nombrep].to_s
     erb :ingresar_intento_view
 end
 
@@ -37,4 +40,8 @@ post '/respuestaIntento' do
     else
         erb :mostrar_mensaje_intento_view
     end   
+end
+get '/ingresarNombre2'do
+@nombre= params[:nombre].to_s
+    erb :ingresar_nombre_P2_view
 end
