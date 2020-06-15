@@ -11,6 +11,10 @@ class CowsAndBulls
         return resp
     end
 
+    def isNumeric(obj) 
+        obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+    end
+
     def verifyCharacters(number)
         resp = true
         string  = number.to_s
@@ -24,7 +28,7 @@ class CowsAndBulls
 
     def verifyData(number)
         resp = false
-        if(verifyQuantityOfDigits(number) && verifyCharacters(number))
+        if(verifyQuantityOfDigits(number) && verifyCharacters(number) && isNumeric(number))
             resp = true
         end
         return resp

@@ -5,10 +5,18 @@ RSpec.describe CowsAndBulls do
         key = CowsAndBulls.new
         expect(key.verifyData(1234)).to eq(true)
     end
-     it 'Deberia devolver false si el numero es mayor a 4 digitos' do
+    it 'Deberia devolver true si el numero es de 4 digitos y los digitos son diferentes' do
         key = CowsAndBulls.new
-        expect(key.verifyData(12345)).to eq(false)
-     end
+        expect(key.isNumeric(1234)).to eq(true)
+    end
+    it 'Deberia devolver false si ingresa caracteres que no sean numeros como jhgj' do
+        key = CowsAndBulls.new
+        expect(key.verifyData("jhgj")).to eq(false)
+    end
+    it 'Deberia devolver false si ingresa caracteres que no sean numeros como 12hg' do
+        key = CowsAndBulls.new
+        expect(key.verifyData("12hg")).to eq(false)
+    end
     it 'Deberia devolver false si el numero tiene 4 digitos pero tiene numeros repetidos' do
         key = CowsAndBulls.new
         expect(key.verifyData(1123)).to eq(false)
