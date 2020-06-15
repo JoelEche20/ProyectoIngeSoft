@@ -17,6 +17,7 @@ get '/configuracion'do
 end
 
 get '/ingresarNombre' do
+
     $quien=@params[:quien].to_s
     $modo=@params[:modo].to_s
     $dificultad=@params[:dificultad].to_s
@@ -44,8 +45,8 @@ end
 
 post '/respuestaIntento' do
     cowbull=CowsAndBulls.new
-    cowbull.configuration($key.to_s,"numeros",4)
-    @intento=cowbull.playCowsAndBulls(params[:intento].to_i)
+    cowbull.configuration($key.to_s,$modo,4)
+    @intento=cowbull.playCowsAndBulls(params[:intento].to_s)
     if(@intento == true)
         erb :mostrar_mensaje_view
     else
