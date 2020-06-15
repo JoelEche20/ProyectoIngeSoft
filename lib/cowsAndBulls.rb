@@ -4,11 +4,30 @@ class CowsAndBulls
     @bulls
 
     def verifyQuantityOfDigits(number)
+        resp = false
         if(number.to_s.length == $max_length_key + 1)
-            return true
-        else
-            return false
+            resp = true
         end
+        return resp
+    end
+
+    def verifyCharacters(number)
+        resp = true
+        string  = number.to_s
+        for i in (1..$max_length_key)
+            if(string[i] == string[i - 1])
+                resp = false 
+            end
+        end
+        return resp
+    end
+
+    def verifyData(number)
+        resp = false
+        if(verifyQuantityOfDigits(number) && verifyCharacters(number))
+            resp = true
+        end
+        return resp
     end
 
     def changeNumberToLiteral(number)
@@ -64,15 +83,9 @@ class CowsAndBulls
             if(currentDigit == key.to_s[y])
                 if(position == y)
                     @bulls += 1
-                    if(!coincidence)
-                        @cows -= 1
-                    end
-                     y = $max_length_key
+                    y = $max_length_key
                 else
-                    if(coincidence && (position > 0 && (currentDigit != previusDigit)))
-                        @cows += 1
-                        coincidence = false
-                    end
+                    @cows += 1
                 end
             end
             y += 1
@@ -83,7 +96,7 @@ class CowsAndBulls
         @cows = 0
         @bulls = 0
         message = ''
-        if(verifyQuantityOfDigits(number))
+        if(verifyData(number))
             if(number == key)
                 return true
             else
