@@ -15,7 +15,7 @@ class CowsAndBulls
         obj.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
     end
 
-    def verifyCharacters(number)
+    def verifyRepeatedCharacters(number)
         resp = true
         string  = number.to_s
         for i in (1..$max_length_key)
@@ -26,10 +26,43 @@ class CowsAndBulls
         return resp
     end
 
-    def verifyData(number)
+    def verifyCharacterNumber(number)
         resp = false
-        if(verifyQuantityOfDigits(number) && verifyCharacters(number) && isNumeric(number))
+        if(verifyQuantityOfDigits(number) && verifyRepeatedCharacters(number) && isNumeric(number))
             resp = true
+        end
+        return resp
+    end
+
+    def validColors(color)
+        c = color.to_s.downcase
+        resp = false
+        if(c == 'r' || c == 'a' || c == 'v' || c == 'b')
+            resp = true
+        end
+        return resp
+    end
+
+    def verifyCharacterColor(colors)
+        resp = true
+        if(verifyQuantityOfDigits(colors) && verifyRepeatedCharacters(colors))
+            i = 0
+            while i <= $max_length_key
+                if(!validColors(colors.to_s[i]))
+                    resp = false
+                    i = $max_length_key
+                end 
+                i += 1  
+            end
+        end
+        return resp
+    end
+
+    def verifyData(input,type)
+        if(type == "colores")
+            resp = verifyCharacterColor(input)
+        elsif (type == "numeros")
+            resp = verifyCharacterNumber(input)
         end
         return resp
     end
@@ -96,11 +129,11 @@ class CowsAndBulls
         end
     end
 
-    def playCowsAndBulls(number,key)
+    def playCowsAndBulls(number,key,type)
         @cows = 0
         @bulls = 0
         message = ''
-        if(verifyData(number))
+        if(verifyData(number,type))
             if(number == key)
                 return true
             else
