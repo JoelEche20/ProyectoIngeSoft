@@ -11,6 +11,7 @@ class CowsAndBulls
         @max_length_key = max_length_key.to_i - 1
         if (verifyData(key))
             @key = key.to_s
+            @key = @key.downcase
             resp = true
         end
         return resp
@@ -147,7 +148,7 @@ class CowsAndBulls
         @bulls = 0
         message = ''
         if(verifyData(number))
-            if(number.to_s == @key)
+            if(number.to_s.downcase == @key)
                 return true
             else
                 for i in (0..@max_length_key)

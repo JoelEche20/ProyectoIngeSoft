@@ -68,8 +68,13 @@ RSpec.describe CowsAndBulls do
     end
     it 'Deberia devolver sin coincidencias si el intento es 3675 y la clave es 2754' do
         cowsAndBulls = CowsAndBulls.new
-        cowsAndBulls.configuration("ravb","colores",4)
+        cowsAndBulls.configuration("RAVB","colores",4)
         expect(cowsAndBulls.playCowsAndBulls("ravb")).to eq(true)
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 3675 y la clave es 2754' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration("ravb","colores",4)
+        expect(cowsAndBulls.playCowsAndBulls("rbav")).to eq("tres vacas y un toro")
     end
     it 'Deberia devolver sin coincidencias si el intento es 3675 y la clave es 2754' do
         cowsAndBulls = CowsAndBulls.new
