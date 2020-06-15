@@ -44,8 +44,8 @@ end
 
 post '/respuestaIntento' do
     cowbull=CowsAndBulls.new
-    @intento=cowbull.playCowsAndBulls(params[:intento].to_i,$key)
-     
+    cowbull.configuration($key.to_s,"numeros",4)
+    @intento=cowbull.playCowsAndBulls(params[:intento].to_i)
     if(@intento == true)
         erb :mostrar_mensaje_view
     else
