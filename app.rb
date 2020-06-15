@@ -1,13 +1,26 @@
 require 'sinatra'
 load 'lib/cowsAndBulls.rb'
-
 $key
 
-get	'/' do
+get '/'do 
+    erb :configuracion_view
+end
+
+post '/' do
+    
+    erb :ingresar_nombre_view
+end
+
+get '/ingresarNombre' do
+    erb :ingresar_nombre_view
+end
+get '/ingresarClave' do
+    @nombre= params[:nombre].to_s
     erb :ingresar_clave_view
 end
 post '/ingresarClave'do
-    $key= params[:clave].to_i
+
+    $key= params[:clave]
     erb :ingresar_intento_view
 end
 
