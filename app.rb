@@ -4,6 +4,9 @@ load 'lib/cowsAndBulls.rb'
 $key
 
 get	'/' do
+    erb :Home
+end
+get	'/' do
     erb :ingresar_clave_view
 end
 post '/ingresarClave'do
