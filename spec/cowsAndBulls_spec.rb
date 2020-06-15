@@ -33,17 +33,21 @@ RSpec.describe CowsAndBulls do
         cowsAndBulls = CowsAndBulls.new
         expect(cowsAndBulls.configuration("ravbnc","colores","Medio")).to eq(true)
     end
-    it 'Deberia devolver false si el string que ingresa es ravb' do
+    it 'Deberia devolver false si el string que ingresa es ravbnc' do
         cowsAndBulls = CowsAndBulls.new
         expect(cowsAndBulls.configuration("ravbnc","colores","Alto")).to eq(false)
     end
-    it 'Deberia devolver false si el string que ingresa es ravb' do
+    it 'Deberia devolver false si el string que ingresa es ravbncdm' do
         cowsAndBulls = CowsAndBulls.new
         expect(cowsAndBulls.configuration("ravbncdm","colores","Alto")).to eq(true)
     end
-    it 'Deberia devolver false si el string que ingresa es ravb' do
+    it 'Deberia devolver false si el numero que ingresa es 123456789' do
         cowsAndBulls = CowsAndBulls.new
         expect(cowsAndBulls.configuration(123456789,"numeros","Alto")).to eq(false)
+    end
+    it 'Deberia devolver false si el string que ingresa es ravb' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.configuration("ytqwolkz","colores","Alto")).to eq(false)
     end
     it 'Deberia devolver true si el intento es 1234 y la clave es 1234' do
         cowsAndBulls = CowsAndBulls.new
@@ -104,5 +108,45 @@ RSpec.describe CowsAndBulls do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration("ravb","colores","Facil")
         expect(cowsAndBulls.playCowsAndBulls("rbav")).to eq("tres vacas y un toro")
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654321' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration(123456,"numeros","Medio")
+        expect(cowsAndBulls.playCowsAndBulls(654321)).to eq("seis vacas")
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration(123456,"numeros","Medio")
+        expect(cowsAndBulls.playCowsAndBulls(654327)).to eq("cinco vacas")
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration(123456,"numeros","Medio")
+        expect(cowsAndBulls.playCowsAndBulls(654327)).to eq("cinco vacas")
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration(123456,"numeros","Medio")
+        expect(cowsAndBulls.playCowsAndBulls(123456)).to eq(true)
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration(12345678,"numeros","Alto")
+        expect(cowsAndBulls.playCowsAndBulls(87654321)).to eq("ocho vacas")
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration(12345678,"numeros","Alto")
+        expect(cowsAndBulls.playCowsAndBulls(87654329)).to eq("siete vacas")
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration("ravbnc","colores","Medio")
+        expect(cowsAndBulls.playCowsAndBulls("cnardm")).to eq("cuatro vacas")
+    end
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+        cowsAndBulls = CowsAndBulls.new
+        cowsAndBulls.configuration("ravbncmd","colores","Alto")
+        expect(cowsAndBulls.playCowsAndBulls("dmcnbvar")).to eq("ocho vacas")
     end
 end
