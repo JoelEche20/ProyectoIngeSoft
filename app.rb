@@ -1,23 +1,34 @@
 require 'sinatra'
 load 'lib/cowsAndBulls.rb'
 $key
+$nombre
+$nombrep
+$quien
+$modo
+$dificultad
+
 
 get '/'do 
+    erb :Home
+end
+
+get '/configuracion'do
     erb :configuracion_view
 end
 
-post '/' do
-    
-    erb :ingresar_nombre_view
-end
-
 get '/ingresarNombre' do
-    
-    erb :ingresar_nombre_view
+    $quien=@params[:quien].to_s
+    $modo=@params[:modo].to_s
+    $dificultad=@params[:dificultad].to_s
+    if($quien.to_s=="1 v CPU")
+        erb :ingresar_nombre_P2_view
+    else
+        erb :ingresar_nombre_view
+    end
 end
 get '/ingresarClave' do
-    @nombre= params[:nombre].to_s
-    @nombrep= params[:nombrep].to_s
+    $nombre= params[:nombre].to_s
+    $nombrep= params[:nombrep].to_s
     erb :ingresar_clave_view
 end
 post '/ingresarClave'do
@@ -27,7 +38,7 @@ post '/ingresarClave'do
 end
 
 get '/ingresarIntento' do
-    @nombrep= params[:nombrep].to_s
+    $nombrep= params[:nombrep].to_s
     erb :ingresar_intento_view
 end
 
@@ -42,6 +53,6 @@ post '/respuestaIntento' do
     end   
 end
 get '/ingresarNombre2'do
-@nombre= params[:nombre].to_s
+    $nombre= params[:nombre].to_s
     erb :ingresar_nombre_P2_view
 end
