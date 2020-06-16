@@ -109,42 +109,38 @@ RSpec.describe CowsAndBulls do
         cowsAndBulls.configuration("ravb","colores","Facil")
         expect(cowsAndBulls.playCowsAndBulls("rbav")).to eq("tres vacas y un toro")
     end
-    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654321' do
+    it 'Deberia devolver sin coincidencias si el intento es 654321 y la clave es 123456' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration(123456,"numeros","Medio")
         expect(cowsAndBulls.playCowsAndBulls(654321)).to eq("seis vacas")
     end
+
     it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration(123456,"numeros","Medio")
         expect(cowsAndBulls.playCowsAndBulls(654327)).to eq("cinco vacas")
     end
-    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
-        cowsAndBulls = CowsAndBulls.new
-        cowsAndBulls.configuration(123456,"numeros","Medio")
-        expect(cowsAndBulls.playCowsAndBulls(654327)).to eq("cinco vacas")
-    end
-    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 123456' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration(123456,"numeros","Medio")
         expect(cowsAndBulls.playCowsAndBulls(123456)).to eq(true)
     end
-    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+    it 'Deberia devolver sin coincidencias si el intento es 87654321 y la clave es 12345678' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration(12345678,"numeros","Alto")
         expect(cowsAndBulls.playCowsAndBulls(87654321)).to eq("ocho vacas")
     end
-    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+    it 'Deberia devolver sin coincidencias si el intento es 87654329 y la clave es 12345678' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration(12345678,"numeros","Alto")
         expect(cowsAndBulls.playCowsAndBulls(87654329)).to eq("siete vacas")
     end
-    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+    it 'Deberia devolver sin coincidencias si el intento es cnardm y la clave es ravbnc' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration("ravbnc","colores","Medio")
         expect(cowsAndBulls.playCowsAndBulls("cnardm")).to eq("cuatro vacas")
     end
-    it 'Deberia devolver sin coincidencias si el intento es 123456 y la clave es 654327' do
+    it 'Deberia devolver sin coincidencias si el intento es dmcnbvar y la clave es ravbncmd' do
         cowsAndBulls = CowsAndBulls.new
         cowsAndBulls.configuration("ravbncmd","colores","Alto")
         expect(cowsAndBulls.playCowsAndBulls("dmcnbvar")).to eq("ocho vacas")
