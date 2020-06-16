@@ -5,10 +5,79 @@ class CowsAndBulls
     @type
     @key
 
+    def randomNumber(level)
+        random = ""
+        i = 1
+        cantidadDeDigitos = defineLvels(level).to_i
+        number = rand(1..9)
+        random = random + number.to_s
+        while i < cantidadDeDigitos
+            number = rand(1..9)
+            isRepeated = false
+            for y in (0..random.length)
+                if(random[y] == number.to_s)
+                    isRepeated = true
+                end
+            end
+            if !isRepeated
+                random = random + number.to_s
+                i += 1 
+            end
+        end
+        puts random
+        return random
+    end
+
+    def changedNumbersToColors(number)
+        case number.to_i
+        when 1
+            resp = 'r'
+        when 2
+            resp = 'a'
+        when 3
+            resp = 'v'
+        when 4
+            resp = 'b'
+        when 5
+            resp = 'n'
+        when 6
+            resp = 'c'
+        when 7
+            resp = 'm'
+        when 8
+            resp = 'd'
+        when 9
+            resp = 'p'
+        end
+        return resp
+    end
+
+    def colorsRandom(level)
+        numberRand = randomNumber(level)
+        puts numberRand.to_s
+        colors = ""
+        for i in (0..numberRand.length)
+            colors = colors + changedNumbersToColors(numberRand.to_s[i]).to_s
+        end
+        return colors
+    end
+
+    def defineLvels(level)
+        case level
+        when "Facil"
+            resp = 4
+        when "Medio"
+            resp = 6
+        when "Alto"
+            resp = 8
+        end
+        return resp
+    end
+
     def configuration(key,type,max_length_key)
         resp = false
         @type = type.to_s
-        @max_length_key = max_length_key.to_i - 1
+        @max_length_key = defineLvels(max_length_key).to_i - 1
         if (verifyData(key))
             @key = key.to_s
             @key = @key.downcase
@@ -51,16 +120,17 @@ class CowsAndBulls
     def validColors(color)
         c = color.to_s.downcase
         resp = false
-        if(c == 'r' || c == 'a' || c == 'v' || c == 'b')
+        if(c == 'r' || c == 'a' || c == 'v' || c == 'b' || c == 'n' || c == 'c' || c == 'm' || c == 'd' || c == 'p')
             resp = true
         end
         return resp
     end
 
     def verifyCharacterColor(colors)
-        resp = true
+        resp = false
         if(verifyQuantityOfDigits(colors) && verifyRepeatedCharacters(colors))
             i = 0
+            resp = true
             while i <= @max_length_key
                 if(!validColors(colors.to_s[i]))
                     resp = false
@@ -92,8 +162,16 @@ class CowsAndBulls
             word = 'dos'
         when 3 
             word = 'tres'
-        else
+        when 4 
             word = 'cuatro'
+        when 5 
+            word = 'cinco'
+        when 6
+            word = 'seis'
+        when 7 
+            word = 'siete'
+        else
+            word = 'ocho'
         end
         return word
     end
