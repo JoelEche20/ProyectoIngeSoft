@@ -75,4 +75,5 @@ end
 get '/ingresarNombre2'do
     $nombre= params[:nombre].to_s
     erb :ingresar_nombre_P2_view
+
 end
