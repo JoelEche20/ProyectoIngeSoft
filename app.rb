@@ -47,12 +47,7 @@ get '/ingresarIntento' do
 end
 
 post '/respuestaIntento' do
-    if $cont == 0 
-        $cont=9
-        $esMayor=true
-        erb :perdiste_view
-    else
-        cowbull=CowsAndBulls.new
+    cowbull=CowsAndBulls.new
         if $quien.to_s=="1 v CPU" && $esMayor
             $esMayor=false
             if $modo=="colores"
@@ -63,6 +58,11 @@ post '/respuestaIntento' do
         end
         cowbull.configuration($key.to_s,$modo,$dificultad)
         @intento=cowbull.playCowsAndBulls(params[:intento].to_s)
+    if $cont == 0 && @intento != true
+        $cont=9
+        $esMayor=true
+        erb :perdiste_view
+    else
         if(@intento == true)
             $cont=9
             $esMayor=true
@@ -70,7 +70,7 @@ post '/respuestaIntento' do
         else
             $cont=$cont-1
             erb :mostrar_mensaje_intento_view
-        end   
+        end  
     end
 end
 get '/ingresarNombre2'do
