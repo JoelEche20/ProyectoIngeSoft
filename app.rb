@@ -18,7 +18,6 @@ get '/configuracion'do
 end
 
 get '/ingresarNombre' do
-
     $quien=@params[:quien].to_s
     $modo=@params[:modo].to_s
     $dificultad=@params[:dificultad].to_s
@@ -50,6 +49,7 @@ end
 post '/respuestaIntento' do
     if $cont == 0 
         $cont=9
+        $esMayor=true
         erb :perdiste_view
     else
         cowbull=CowsAndBulls.new
@@ -65,6 +65,7 @@ post '/respuestaIntento' do
         @intento=cowbull.playCowsAndBulls(params[:intento].to_s)
         if(@intento == true)
             $cont=9
+            $esMayor=true
             erb :mostrar_mensaje_view
         else
             $cont=$cont-1

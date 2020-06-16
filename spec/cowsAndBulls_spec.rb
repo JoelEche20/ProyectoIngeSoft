@@ -145,4 +145,40 @@ RSpec.describe CowsAndBulls do
         cowsAndBulls.configuration("ravbncmd","colores","Alto")
         expect(cowsAndBulls.playCowsAndBulls("dmcnbvar")).to eq("ocho vacas")
     end
+    it 'Deberia devolver r si ingresa 1' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(1)).to eq("r")
+    end
+    it 'Deberia devolver a si ingresa 2' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(2)).to eq("a")
+    end
+    it 'Deberia devolver v si ingresa 3' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(3)).to eq("v")
+    end
+    it 'Deberia devolver b si ingresa 4' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(4)).to eq("b")
+    end
+    it 'Deberia devolver n si ingresa 5' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(5)).to eq("n")
+    end
+    it 'Deberia devolver c si ingresa 6' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(6)).to eq("c")
+    end
+    it 'Deberia devolver m si ingresa 7' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(7)).to eq("m")
+    end
+    it 'Deberia devolver d si ingresa 8' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(8)).to eq("d")
+    end
+    it 'Deberia devolver p si ingresa 9' do
+        cowsAndBulls = CowsAndBulls.new
+        expect(cowsAndBulls.changedNumbersToColors(9)).to eq("p")
+    end
 end
